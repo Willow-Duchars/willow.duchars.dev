@@ -516,7 +516,6 @@ fn choose_sprite(name: &str) -> SpriteData {
         ELECTRUM => INGOT_ELECTRUM,
         CUPRONICKEL => INGOT_CUPRONICKEL,
         "Crucible" => CRUCIBLE,
-        "Charcoal" => CHARCOAL,
         "Highlight" => SLOT_HIGHLIGHT,
         _ => EMPTY_SLOT,
     }

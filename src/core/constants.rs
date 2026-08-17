@@ -38,7 +38,6 @@ pub mod alloy_calculator {
     const ROW_3: f64 = -120.0;
     const ROW_4: f64 = -180.0;
     const ROW_5: f64 = -240.0;
-    const ROW_6: f64 = -300.0;
 
     const SPRITESHEET: &str = "public/vs_alloy_calculator_spritesheet.png";
     const DEFAULT_SPRITE_SIZE: Dimensions = Dimensions { w: 60.0, h: 60.0 };
@@ -166,18 +165,10 @@ pub mod alloy_calculator {
         pos: Position { x: COL_3, y: ROW_5 },
         size: DEFAULT_SPRITE_SIZE,
     };
-    pub const CHARCOAL: SpriteData = SpriteData {
-        src: SPRITESHEET,
-        alt: "charcoal",
-        pos: Position { x: COL_4, y: ROW_5 },
-        size: DEFAULT_SPRITE_SIZE,
-    };
-
-    // =============== Row 6 Sprites ===============
     pub const SLOT_HIGHLIGHT: SpriteData = SpriteData {
         src: SPRITESHEET,
         alt: "highlighted slot",
-        pos: Position { x: COL_1, y: ROW_6 },
+        pos: Position { x: COL_4, y: ROW_5 },
         size: Dimensions { w: 64.0, h: 64.0 },
     };
 }
