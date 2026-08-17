@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Willow's Wonderful Website</title>
+    <link rel="stylesheet" href="/styles-6e14db2b6766442a.css" integrity="sha384-wKWaiacBWHARqKcajmWp/eTKgrlzVgN7VzQhYcGtr/3Lxcn0y462gN9lSW+xU1hU"/>
+    <link rel="stylesheet" href="/window_styles-97e207fbd1f395db.css" integrity="sha384-oA03JAFNTXj6vzVxla01dKbn0wwhY3fSvdOhTsJnOaEJoxBJUnUIAp/q9hm6rzS5"/>
+    
+    
+<script type="module">
+import init, * as bindings from '/willow_duchars_dev-7f9a3540d667eff1.js';
+const wasm = await init({ module_or_path: '/willow_duchars_dev-7f9a3540d667eff1_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+  <link rel="modulepreload" href="/willow_duchars_dev-7f9a3540d667eff1.js" crossorigin="anonymous" integrity="sha384-Eaxwr8KDSuXW3pVxX6JHg8dq9wnRMQAHg8LLeBJCavrLz/DMrHqOCAgLM07A+Ibq"><link rel="preload" href="/willow_duchars_dev-7f9a3540d667eff1_bg.wasm" crossorigin="anonymous" integrity="sha384-VsgSKRpOVO1fO1wdAJpU6WZgHuIth1q/SBB4SYIMLVvl2YfWNcye6H4PlUFcM3LA" as="fetch" type="application/wasm"></head>
+  <body></body>
+</html>
