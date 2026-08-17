@@ -1,0 +1,24 @@
+[package]
+name = "willow_duchars_dev"
+version = "0.1.0"
+authors = ["Willow Duchars"]
+edition = "2024"
+homepage = "willow.duchars.dev"
+description = "Package for my personal website"
+repository = "https://github.com/Willow-Duchars/willow.duchars.dev"
+
+[dependencies]
+leptos = { version = "0.8", features = ["csr", "nightly"] }
+leptos-use = "0.19"
+leptos_router = "0.8"
+console_error_panic_hook = "0.1"
+leptos-maybe-callback = "0.2"
+vs_alloy_calculator = { git = "https://github.com/Willow-Duchars/vs_alloy_calculator" }
+
+[[bin]]
+name = "willow_duchars_dev"
+path = "src/main.rs"
+
+[lib]
+name = "window_lib"
+path = "src/lib.rs"

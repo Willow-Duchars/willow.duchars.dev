@@ -1,0 +1,39 @@
+/** Alloy Calculator */
+#alloy-calculator > .div:last-of-type {
+  background: #443629;
+}
+#crucible {
+  width: 256px;
+}
+.crucible-item {
+  position: relative;
+  height: 64px;
+  width: 64px;
+}
+.crucible-item img:first-of-type {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+.crucible-item img:last-of-type {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.crucible-item:hover img:last-of-type {
+  visibility: visible;
+}
+.crucible-item p {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  color: white;
+  font-size: 1.5rem;
+  text-shadow:
+    1px 1px black,
+    1px -1px black,
+    -1px 1px black,
+    -1px -1px black;
+}
+/** Alloy Calculator */
