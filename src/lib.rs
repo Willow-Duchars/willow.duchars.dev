@@ -7,6 +7,12 @@ pub use core::constants;
 pub use core::desktop_items::{DesktopItemFunction, DesktopItems};
 pub use core::sprite_data::SpriteData;
 pub use core::window_data::Windows;
+pub mod prelude {
+    pub use crate::components::Window;
+    pub use crate::constants::icons;
+    pub use crate::Dimensions;
+    pub use crate::WindowData;
+}
 // Imports
 use leptos::{html, prelude::*};
 use leptos_use::core::Position;

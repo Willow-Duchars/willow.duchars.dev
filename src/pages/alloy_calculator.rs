@@ -1,10 +1,6 @@
 use leptos::{logging::error, prelude::*};
 use vs_alloy_calculator::prelude::*;
-use window_lib::{
-    components::{Sprite, Window},
-    constants::icons,
-    Dimensions, SpriteData, WindowData,
-};
+use window_lib::{components::Sprite, prelude::*, SpriteData};
 
 #[component]
 pub fn alloy_calculator(is_open: bool) -> impl IntoView {

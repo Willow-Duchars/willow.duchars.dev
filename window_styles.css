@@ -1,5 +1,5 @@
 /** Alloy Calculator */
-#alloy-calculator > .div:last-of-type {
+#alloy-calculator > div:last-of-type {
   background: #443629;
 }
 #crucible {
@@ -37,3 +37,53 @@
     -1px -1px black;
 }
 /** Alloy Calculator */
+
+/** Transition Timer */
+#transition-timer {
+  text-align: center;
+}
+#transition-timer > div:last-of-type {
+  position: relative;
+  padding: 0px;
+  color: black;
+}
+/* Timer Checkbox */
+#transition-timer label {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+/* Timer Text */
+#transition-timer > div:last-of-type > div:last-of-type {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+#flag {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+#flag div {
+  flex-grow: 1;
+}
+#flag > div:last-of-type {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.flag-blue {
+  background: #5bcefa;
+}
+.flag-pink {
+  background: #f5a9b8;
+}
+.flag-white {
+  background: white;
+}
+/** Transition Timer */

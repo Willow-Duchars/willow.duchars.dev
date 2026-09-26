@@ -14,6 +14,8 @@ leptos_router = "0.8"
 console_error_panic_hook = "0.1"
 leptos-maybe-callback = "0.2"
 vs_alloy_calculator = { git = "https://github.com/Willow-Duchars/vs_alloy_calculator" }
+chrono-humanize = "0.2"
+chrono = "0.4"
 
 [[bin]]
 name = "willow_duchars_dev"

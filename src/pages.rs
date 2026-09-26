@@ -2,16 +2,18 @@ use alloy_calculator::AlloyCalculator;
 use leptos::prelude::*;
 use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
-use window_lib::components::Window;
-use window_lib::{constants::icons, WindowData};
+use transition_timer::TransitionTimer;
+use window_lib::prelude::*;
 
 mod alloy_calculator;
+mod transition_timer;
 
 #[derive(PartialEq, Eq)]
 enum Page {
     About,
     AlloyCalculator,
     InvalidPath,
+    TransitionTimer,
 }
 
 #[component]
@@ -25,6 +27,10 @@ pub fn pages() -> impl IntoView {
                     path=path!("/alloy-calculator")
                     view=|| view! { <OpenPage open=Page::AlloyCalculator/> }
                 />
+                <Route
+                    path=path!("/transition-timer")
+                    view=|| view! { <OpenPage open=Page::TransitionTimer/> }
+                />
             </Routes>
         </Router>
     }
@@ -35,6 +41,7 @@ fn open_page(open: Page) -> impl IntoView {
     view! {
         <About is_open=if open == Page::About { true } else { false }/>
         <AlloyCalculator is_open=if open == Page::AlloyCalculator { true } else { false }/>
+        <TransitionTimer is_open=if open == Page::TransitionTimer { true } else { false }/>
     }
 }
 
@@ -45,12 +52,12 @@ pub fn about(is_open: bool) -> impl IntoView {
         .open(is_open);
     view! {
         <Window data>
-            <h1>"Yo! What up!"</h1>
+            <h1>"Yo waddup!"</h1>
             <p>
                 "Hi, I'm Willow Duchars, a recent computer science graduate from Lindenwood Univsersity.
-                I was born in Pheonix, AZ and raised in St. Louis, MO. Some of my hobbies include playing 
-                and theorizing about Magic: The Gathering, seeking out all the achievements in various 
-                videogames, collecting soundtracks, and working on personal coding projects such as this one."
+                Some of my hobbies include playing and theorizing about Magic: The Gathering, seeking out 
+                all the achievements in various videogames, collecting soundtracks, and working on personal 
+                coding projects such as this one."
             </p>
         </Window>
     }

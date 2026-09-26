@@ -8,6 +8,7 @@ pub mod icons {
     pub const LINKEDIN: &str = "public/LI-In-Bug.png";
     pub const MENU: &str = "public/menu.svg";
     pub const CRUCIBLE: &str = "public/crucible_icon.png";
+    pub const TRANS: &str = "public/trans-icon.svg";
 }
 
 pub mod external_links {
