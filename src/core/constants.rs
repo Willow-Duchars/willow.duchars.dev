@@ -25,7 +25,7 @@ pub mod styling {
 }
 
 pub mod alloy_calculator {
-    use crate::{core::sprite_data::SpriteData, Dimensions};
+    use crate::{Dimensions, core::sprite_data::SpriteData};
     use leptos_use::core::Position;
 
     // =============== Sprite Data Constants ===============

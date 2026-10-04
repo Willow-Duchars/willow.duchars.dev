@@ -9,10 +9,10 @@ pub use core::sprite_data::SpriteData;
 pub use core::taskbar_items::{TaskbarItem, TaskbarItems};
 pub use core::window_data::{WindowData, Windows};
 pub mod prelude {
-    pub use crate::components::Window;
-    pub use crate::constants::icons;
     pub use crate::Dimensions;
     pub use crate::WindowData;
+    pub use crate::components::Window;
+    pub use crate::constants::icons;
 }
 
 /// Semantic struct for dimension data

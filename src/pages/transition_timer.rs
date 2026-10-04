@@ -36,7 +36,7 @@ fn format_timer() -> String {
         Some(trimmed) => trimmed,
         None => ago.as_str(),
     };
-    insert_and_into_string(&ago)
+    insert_and_into_string(ago)
 }
 
 /// Checks input string for the patterns and trims everything after it. \
@@ -44,9 +44,8 @@ fn format_timer() -> String {
 /// Assumes ASCII and checks for plurality.
 fn trim_to_words<'a>(input: &'a str, patterns: &[&str]) -> Option<&'a str> {
     for pattern in patterns {
-        match trim_to_word(input, pattern) {
-            Some(trimmed) => return Some(trimmed),
-            None => (),
+        if let Some(trimmed) = trim_to_word(input, pattern) {
+            return Some(trimmed);
         }
     }
     None
@@ -58,7 +57,7 @@ fn trim_to_word<'a>(input: &'a str, pattern: &str) -> Option<&'a str> {
     match input.find(pattern) {
         Some(index) => {
             let pattern_len = pattern.len();
-            Some(if input.as_bytes()[index + pattern_len] == 's' as u8 {
+            Some(if input.as_bytes()[index + pattern_len] == b's' {
                 &input[..index + pattern_len + 1]
             } else {
                 &input[..index + pattern_len]

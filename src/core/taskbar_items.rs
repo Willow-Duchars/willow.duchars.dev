@@ -52,7 +52,7 @@ impl From<WindowData> for TaskbarItem {
 
 /// Stores the set of all [`TaskbarItem`]s \
 /// Used for simplifying type signatures and for implementing a default set of items
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct TaskbarItems(pub RwSignal<Vec<TaskbarItem>>);
 impl TaskbarItems {
     pub fn add_item(&self, window: WindowData) {

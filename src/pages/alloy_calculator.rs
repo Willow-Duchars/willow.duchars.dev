@@ -1,6 +1,6 @@
 use leptos::{logging::error, prelude::*};
 use vs_alloy_calculator::prelude::*;
-use window_lib::{components::Sprite, prelude::*, SpriteData};
+use window_lib::{SpriteData, components::Sprite, prelude::*};
 
 #[component]
 pub fn alloy_calculator(is_open: bool) -> impl IntoView {
@@ -92,6 +92,7 @@ fn round_float(num: f64) -> f64 {
 }
 
 #[component]
+#[allow(clippy::unused_unit, clippy::unit_arg)]
 fn alloy_constituent_ratio_inputs(
     alloy: ReadSignal<Alloys>,
     num_ingots: RwSignal<i32>,
@@ -258,14 +259,8 @@ fn alloy_constituent_ratio_inputs(
                                 <input
                                     type="range"
                                     id="constituent-c"
-                                    min=move || {
-                                        range_c().and_then(|r_c| Some(to_percentage(r_c.min)))
-                                    }
-
-                                    max=move || {
-                                        range_c().and_then(|r_c| Some(to_percentage(r_c.max)))
-                                    }
-
+                                    min=move || { range_c().map(|r_c| to_percentage(r_c.min)) }
+                                    max=move || { range_c().map(|r_c| to_percentage(r_c.max)) }
                                     step="1"
                                     on:input:target=move |ev| {
                                         let value_c = ev.target().value().parse::<f64>().unwrap()
@@ -350,10 +345,12 @@ fn alloy_output(
     Effect::new(move |_| {
         set_output.update(|alloy| {
             let (a, b, c) = (percentage_a(), percentage_b(), percentage_c());
-            while let Err(_) = match c {
+            while match c {
                 Some(c) => alloy.set_percentages([a, b, c]),
                 None => alloy.set_percentages([a, b]),
-            } {
+            }
+            .is_err()
+            {
                 num_ingots.update(|num| {
                     *num -= 1;
                     let _ = alloy.set_num_ingots(*num);

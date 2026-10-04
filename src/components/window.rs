@@ -1,7 +1,7 @@
 use super::{Button, Icon};
 use crate::{
-    constants::icons, BrowserDimensions, DesktopItems, Dimensions, TaskbarItems, WindowData,
-    Windows,
+    BrowserDimensions, DesktopItems, Dimensions, TaskbarItems, WindowData, Windows,
+    constants::icons,
 };
 use leptos::{html, prelude::*};
 use leptos_use::core::Position;

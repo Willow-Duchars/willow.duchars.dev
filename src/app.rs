@@ -1,7 +1,7 @@
 use crate::pages::Pages;
 use leptos::prelude::*;
 use window_lib::components::{Desktop, Taskbar};
-use window_lib::{browser, DesktopItems, TaskbarItems, Windows};
+use window_lib::{DesktopItems, TaskbarItems, Windows, browser};
 
 #[component]
 pub fn app() -> impl IntoView {

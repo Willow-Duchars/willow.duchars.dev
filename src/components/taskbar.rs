@@ -1,5 +1,5 @@
 use super::Button;
-use crate::{constants::icons, TaskbarItem, TaskbarItems, Windows};
+use crate::{TaskbarItem, TaskbarItems, Windows, constants::icons};
 use leptos::prelude::*;
 
 /// Creates the area in the footer where the taskbar items are displayed

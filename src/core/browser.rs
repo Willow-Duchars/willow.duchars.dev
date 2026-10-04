@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-use crate::{constants::styling, Dimensions};
+use crate::{Dimensions, constants::styling};
 use leptos::{ev, prelude::*};
 use leptos_use::{core::Position, use_event_listener, use_window};
 use std::ops;

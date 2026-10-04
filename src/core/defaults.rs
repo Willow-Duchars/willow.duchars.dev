@@ -1,6 +1,6 @@
-use crate::{DesktopItem, DesktopItems, Dimensions, TaskbarItems, WindowData, Windows};
+use crate::{DesktopItem, DesktopItems, Dimensions, WindowData, Windows};
 use leptos::{html, prelude::*};
-use leptos_use::{use_draggable_with_options, UseDraggableOptions, UseDraggableReturn};
+use leptos_use::{UseDraggableOptions, UseDraggableReturn, use_draggable_with_options};
 
 impl Default for Dimensions {
     fn default() -> Self {
@@ -50,11 +50,5 @@ impl Default for DesktopItems {
             DesktopItem::new(icons::GITHUB, "Github", external_links::GITHUB),
             DesktopItem::new(icons::LINKEDIN, "LinkedIn", external_links::LINKEDIN),
         ])))
-    }
-}
-
-impl Default for TaskbarItems {
-    fn default() -> Self {
-        Self(Default::default())
     }
 }

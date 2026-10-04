@@ -39,9 +39,9 @@ pub fn pages() -> impl IntoView {
 #[component]
 fn open_page(open: Page) -> impl IntoView {
     view! {
-        <About is_open=if open == Page::About { true } else { false }/>
-        <AlloyCalculator is_open=if open == Page::AlloyCalculator { true } else { false }/>
-        <TransitionTimer is_open=if open == Page::TransitionTimer { true } else { false }/>
+        <About is_open=open == Page::About/>
+        <AlloyCalculator is_open=open == Page::AlloyCalculator/>
+        <TransitionTimer is_open=open == Page::TransitionTimer/>
     }
 }
 
