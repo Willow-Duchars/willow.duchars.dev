@@ -1,5 +1,8 @@
 use super::{Button, Icon};
-use crate::{constants::icons, BrowserDimensions, DesktopItems, Dimensions, WindowData, Windows};
+use crate::{
+    constants::icons, BrowserDimensions, DesktopItems, Dimensions, TaskbarItems, WindowData,
+    Windows,
+};
 use leptos::{html, prelude::*};
 use leptos_use::core::Position;
 
@@ -18,6 +21,7 @@ pub fn window(
         node_ref,
         dimensions,
         position,
+        z_index,
         is_minimized,
         is_maximized,
         is_open,
@@ -25,18 +29,19 @@ pub fn window(
         ..
     } = data;
 
-    expect_context::<Windows>().update(|w| {
-        w.insert(data);
-    });
-
+    expect_context::<Windows>().add_window(data);
+    expect_context::<TaskbarItems>().add_item(data);
     if desktop_item {
-        expect_context::<DesktopItems>().update(|items| {
-            items.insert(data.into());
-        });
+        expect_context::<DesktopItems>().add_item(data);
     }
 
     let browser_dimensions = expect_context::<BrowserDimensions>();
     let window_ref = NodeRef::<html::Div>::new();
+
+    Effect::new(move || {
+        let Position { x, y } = *position.read();
+        update_displayed_position(window_ref, x, y);
+    });
 
     Effect::new(move || {
         let Dimensions { w, h } = match is_maximized() {
@@ -50,9 +55,10 @@ pub fn window(
     });
 
     Effect::new(move || {
-        let Position { x, y } = *position.read();
-        update_displayed_position(window_ref, x, y);
+        update_z_index(window_ref, *z_index.read());
     });
+
+    let make_active = move |_| expect_context::<Windows>().update_active_window(node_ref);
 
     let close = move |_| is_open(false);
     let minimize = move |_| is_minimized(true);
@@ -68,7 +74,13 @@ pub fn window(
 
     view! {
         <Show when=move || is_open() && !is_minimized() fallback=|| ()>
-            <div node_ref=window_ref class="window" id=id aria_label=format!("{title} window")>
+            <div
+                node_ref=window_ref
+                class="window"
+                id=id
+                aria_label=format!("{title} window")
+                on:pointerdown=make_active
+            >
                 <div class="window-bar">
                     <div node_ref=node_ref>
                         <Icon src=icon/>
@@ -102,5 +114,11 @@ fn update_displayed_dimensions(node_ref: NodeRef<html::Div>, w: f64, h: f64) {
     if let Some(nr) = node_ref.get() {
         let _ = (*nr).style().set_property("width", &format!("{w}px"));
         let _ = (*nr).style().set_property("height", &format!("{h}px"));
+    }
+}
+
+fn update_z_index(node_ref: NodeRef<html::Div>, index: usize) {
+    if let Some(nr) = node_ref.get() {
+        let _ = (*nr).style().set_property("z-index", &index.to_string());
     }
 }

@@ -3,6 +3,9 @@ use chrono_humanize::{Accuracy, HumanTime, Tense};
 use leptos::prelude::*;
 use window_lib::prelude::*;
 
+/// UNIX timestamp
+const HRT_START: i64 = 1786734000;
+
 #[component]
 pub fn transition_timer(is_open: bool) -> impl IntoView {
     let data = WindowData::new(icons::TRANS, "Transition Timer").open(is_open);
@@ -24,27 +27,33 @@ pub fn transition_timer(is_open: bool) -> impl IntoView {
     }
 }
 
+/// Formats the timer into a string to be displayed
 fn format_timer() -> String {
-    let date = DateTime::from_timestamp(1786734000, 0).unwrap();
+    let date = DateTime::from_timestamp(HRT_START, 0).unwrap();
     let ago = HumanTime::from(date);
     let ago = ago.to_text_en(Accuracy::Precise, Tense::Present);
-    let ago = if let Some(trimmed) = trim_to_word(&ago, "day") {
-        trimmed
-    } else if let Some(trimmed) = trim_to_word(&ago, "week") {
-        trimmed
-    } else if let Some(trimmed) = trim_to_word(&ago, "month") {
-        trimmed
-    } else {
-        match trim_to_word(&ago, "year") {
-            Some(trimmed) => trimmed,
-            None => ago.as_str(),
-        }
+    let ago = match trim_to_words(&ago, &["day", "week", "month", "year"]) {
+        Some(trimmed) => trimmed,
+        None => ago.as_str(),
     };
     insert_and_into_string(&ago)
 }
 
+/// Checks input string for the patterns and trims everything after it. \
+/// Checks each pattern individually and trims and returns on the frist pattern found. \
+/// Assumes ASCII and checks for plurality.
+fn trim_to_words<'a>(input: &'a str, patterns: &[&str]) -> Option<&'a str> {
+    for pattern in patterns {
+        match trim_to_word(input, pattern) {
+            Some(trimmed) => return Some(trimmed),
+            None => (),
+        }
+    }
+    None
+}
+
 /// Checks input string for the pattern and trims everything after it. \
-/// Assumes ASCII and checks for plurality. Returns an Option with the trimmed string.
+/// Assumes ASCII and checks for plurality. Returns an Option with the trimmed string if found.
 fn trim_to_word<'a>(input: &'a str, pattern: &str) -> Option<&'a str> {
     match input.find(pattern) {
         Some(index) => {

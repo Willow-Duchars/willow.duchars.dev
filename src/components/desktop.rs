@@ -1,5 +1,5 @@
 use super::Button;
-use crate::{DesktopItem, DesktopItemFunction, DesktopItems};
+use crate::{DesktopItem, DesktopItemFunction, DesktopItems, Windows};
 use leptos::prelude::*;
 
 /// Creates the area in main where [`DesktopItem`]s like window shorcuts or external links are be displayed
@@ -24,7 +24,13 @@ fn desktop_item(item: DesktopItem) -> impl IntoView {
     let label = format!("desktop item: {title}");
     use DesktopItemFunction::*;
     match func {
-        Window(is_open) => view! { <Button icon title label on_dblclick=move |_| is_open(true)/> },
+        Window(is_open, window_ref) => {
+            let open = move |_| {
+                expect_context::<Windows>().update_active_window(window_ref);
+                is_open(true);
+            };
+            view! { <Button icon title label on_dblclick=open/> }
+        }
         ExternalLink(link) => view! { <Button icon title label link/> },
     }
 }

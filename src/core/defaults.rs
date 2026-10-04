@@ -1,7 +1,6 @@
-use crate::{DesktopItem, DesktopItems, Dimensions, WindowData, Windows};
+use crate::{DesktopItem, DesktopItems, Dimensions, TaskbarItems, WindowData, Windows};
 use leptos::{html, prelude::*};
 use leptos_use::{use_draggable_with_options, UseDraggableOptions, UseDraggableReturn};
-use std::collections::HashSet;
 
 impl Default for Dimensions {
     fn default() -> Self {
@@ -11,7 +10,7 @@ impl Default for Dimensions {
 
 impl Default for Windows {
     fn default() -> Self {
-        Self(RwSignal::new(HashSet::default()))
+        Self(RwSignal::new(Vec::default()))
     }
 }
 
@@ -34,6 +33,7 @@ impl Default for WindowData {
             position,
             set_position,
             initial_position: Default::default(),
+            z_index: RwSignal::new(0),
             is_minimized: RwSignal::new(false),
             is_maximized: RwSignal::new(false),
             is_open: RwSignal::new(true),
@@ -46,9 +46,15 @@ impl Default for WindowData {
 impl Default for DesktopItems {
     fn default() -> Self {
         use crate::constants::{external_links, icons};
-        Self(RwSignal::new(HashSet::from([
+        Self(RwSignal::new(Vec::from([
             DesktopItem::new(icons::GITHUB, "Github", external_links::GITHUB),
             DesktopItem::new(icons::LINKEDIN, "LinkedIn", external_links::LINKEDIN),
         ])))
+    }
+}
+
+impl Default for TaskbarItems {
+    fn default() -> Self {
+        Self(Default::default())
     }
 }
