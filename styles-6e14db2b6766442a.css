@@ -1,0 +1,192 @@
+/** Initial Setup **/
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+.row {
+  display: flex;
+}
+.icon {
+  aspect-ratio: 1/1;
+  height: 100%;
+}
+.inverted {
+  filter: invert(85%);
+}
+
+/** Disabled Button **/
+button:disabled {
+  cursor: not-allowed;
+}
+
+/** Link Color **/
+a,
+a:visited {
+  color: #219ebc;
+}
+
+/** Desktop Background **/
+html {
+  background-image: url("public/desktop-background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/** Desktop Area **/
+main {
+  position: relative;
+  width: 100%;
+  height: calc(100% - var(--taskbar-total-height));
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/** Window **/
+.window {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+/** Window Bar **/
+.window-bar {
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #ddd;
+}
+
+/** Window Bar Draggable **/
+.window-bar > div {
+  display: flex;
+  flex-grow: 1;
+  line-height: 30px;
+}
+
+/** Window Bar Icon **/
+.window-bar > div .icon {
+  height: 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/** Window Bar Title **/
+.window-bar > div h1 {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/** Window Bar Buttons **/
+.window-bar button {
+  aspect-ratio: 1/1;
+  margin-left: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.window-bar button:last-of-type {
+  margin-right: 5px;
+}
+
+/** Window Content **/
+.window > div:last-of-type {
+  background: black;
+  color: #fff;
+  padding: 5px;
+  height: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/** Taskbar **/
+footer {
+  position: relative;
+  display: flex;
+  height: var(--taskbar-height);
+  border-top: var(--taskbar-border-width) solid #383838;
+  padding-top: calc(var(--taskbar-total-padding) / 2);
+  padding-bottom: calc(var(--taskbar-total-padding) / 2);
+  backdrop-filter: blur(10px) brightness(60%);
+  justify-content: center;
+}
+#taskbar {
+  display: flex;
+  height: 100%;
+  width: min-content;
+}
+
+/** Taskbar Item **/
+#taskbar button {
+  border: thin solid #555555;
+  border-radius: 10px;
+  background-color: rgba(125, 125, 125, 0.2);
+  margin-left: 2px;
+  flex-basis: content;
+}
+#taskbar button:hover {
+  background-color: rgba(150, 150, 150, 0.2);
+}
+
+/** Desktop **/
+#desktop {
+  height: 100%;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2px;
+}
+
+/** Desktop Item **/
+#desktop button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: 100%;
+  color: white;
+  margin: 2px;
+  margin-bottom: 0px;
+  padding: 2px;
+  border-radius: 5px;
+  position: relative;
+}
+#desktop button:hover {
+  background-color: rgba(150, 150, 150, 0.2);
+}
+
+/** Desktop Item Title **/
+#desktop h1 {
+  font-size: 14px;
+  font-weight: normal;
+  justify-content: center;
+  width: 57px;
+}
+#desktop a {
+  color: white;
+  text-decoration: none;
+}
+
+/** Desktop Item Icon **/
+#desktop .icon:first-of-type {
+  height: 42px;
+  width: 42px;
+}
+
+/** Desktop Item External Icon **/
+#desktop a .icon:last-of-type {
+  height: 19px;
+  width: 19px;
+  border: thin solid black;
+  background: white;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 16px;
+  right: 0px;
+}
